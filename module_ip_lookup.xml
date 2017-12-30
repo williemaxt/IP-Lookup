@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_ip_lookup" default="compile.module.ip_lookup">
+  <dirname property="module.ip_lookup.basedir" file="${ant.file.module_ip_lookup}"/>
+  
+  <property name="module.jdk.home.ip_lookup" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.ip_lookup" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.ip_lookup" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.ip_lookup" value="-encoding UTF-8 -source 8 -target 8 ${compiler.args}"/>
+  
+  <property name="ip_lookup.output.dir" value="${module.ip_lookup.basedir}/out/production/IP Lookup"/>
+  <property name="ip_lookup.testoutput.dir" value="${module.ip_lookup.basedir}/out/test/IP Lookup"/>
+  
+  <path id="ip_lookup.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="ip_lookup.module.production.classpath">
+    <path refid="${module.jdk.classpath.ip_lookup}"/>
+  </path>
+  
+  <path id="ip_lookup.runtime.production.module.classpath">
+    <pathelement location="${ip_lookup.output.dir}"/>
+  </path>
+  
+  <path id="ip_lookup.module.classpath">
+    <path refid="${module.jdk.classpath.ip_lookup}"/>
+    <pathelement location="${ip_lookup.output.dir}"/>
+  </path>
+  
+  <path id="ip_lookup.runtime.module.classpath">
+    <pathelement location="${ip_lookup.testoutput.dir}"/>
+    <pathelement location="${ip_lookup.output.dir}"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.ip_lookup">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.ip_lookup">
+    <patternset refid="excluded.from.module.ip_lookup"/>
+  </patternset>
+  
+  <path id="ip_lookup.module.sourcepath">
+    <dirset dir="${module.ip_lookup.basedir}">
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.ip_lookup" depends="compile.module.ip_lookup.production,compile.module.ip_lookup.tests" description="Compile module IP Lookup"/>
+  
+  <target name="compile.module.ip_lookup.production" depends="register.custom.compilers" description="Compile module IP Lookup; production classes">
+    <mkdir dir="${ip_lookup.output.dir}"/>
+    <javac2 destdir="${ip_lookup.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.ip_lookup}/javac">
+      <compilerarg line="${compiler.args.ip_lookup}"/>
+      <bootclasspath refid="ip_lookup.module.bootclasspath"/>
+      <classpath refid="ip_lookup.module.production.classpath"/>
+      <src refid="ip_lookup.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.ip_lookup"/>
+    </javac2>
+    
+    <copy todir="${ip_lookup.output.dir}">
+      <fileset dir="${module.ip_lookup.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.ip_lookup.tests" depends="register.custom.compilers,compile.module.ip_lookup.production" description="compile module IP Lookup; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.ip_lookup" description="cleanup module">
+    <delete dir="${ip_lookup.output.dir}"/>
+    <delete dir="${ip_lookup.testoutput.dir}"/>
+  </target>
+</project>

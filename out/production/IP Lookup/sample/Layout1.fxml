@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="500.0" style="-fx-background-color: #048b1b;" stylesheets="@main.css" xmlns="http://javafx.com/javafx/8.0.112" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Main">
+   <children>
+      <Label layoutX="53.0" layoutY="36.0" text="Find the IP address of any website" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font></Label>
+      <TextField fx:id="webAdrs" layoutX="59.0" layoutY="178.0" prefHeight="49.0" prefWidth="381.0" />
+      <Label layoutX="215.0" layoutY="146.0" text="URL Here:" textFill="WHITE">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+      <Button fx:id="getIPbtn" layoutX="59.0" layoutY="573.0" mnemonicParsing="false" onAction="#getIp" prefHeight="92.0" prefWidth="381.0" style="-fx-background-color: #56e340;" text="Get IP!" textFill="WHITE">
+         <font>
+            <Font name="Droid Sans Bold" size="51.0" />
+         </font>
+      </Button>
+      <Label layoutX="223.0" layoutY="261.0" text="The IP is:" textFill="WHITE" />
+      <Label fx:id="ipAdrs" alignment="CENTER" contentDisplay="CENTER" layoutX="144.0" layoutY="288.0" style="-fx-background-color: #56e340;" text="000.000.0.0" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+         <font>
+            <Font name="Droid Sans Bold" size="40.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="181.0" fitWidth="185.0" layoutX="164.0" layoutY="374.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@search.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="84.0" layoutY="273.0" text="&gt;" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="70.0" />
+         </font>
+      </Label>
+   </children>
+</Pane>
